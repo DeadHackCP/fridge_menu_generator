@@ -79,29 +79,38 @@ def lista_compras(recetas):
 
 def main():
     st.set_page_config(
-        page_title="NutriAI - Tu Asistente Nutricional",
+        page_title="Auto Menú - IA",
         page_icon="🥗",
         layout="wide"
     )
 
-    st.title("🤖 NutriAI: Asistente Nutricional Inteligente")
+    st.title("🤖 Auto Menú - IA")
 
     # Sidebar para preferencias
     st.sidebar.header("📋 Configuración Personal")
     ubicacion = st.sidebar.selectbox(
         "Tu ubicación",
-        ["México", "Argentina", "España", "Colombia", "Peru"]
+        ["México", "Argentina", "España", "Colombia", "Peru", "Chile", "Venezuela", "Ecuador", "Guatemala", "Cuba", "Bolivia", "República Dominicana", "Honduras", "Paraguay", "Nicaragua", "El Salvador", "Costa Rica", "Puerto Rico", "Panamá", "Uruguay", "Jamaica", "Trinidad y Tobago", "Guayana", "Surinam", "Belice", "Haití", "Bahamas", "Barbados", "Santa Lucía", "San Cristóbal y Nieves", "Antigua y Barbuda", "San Vicente y las Granadinas", "Granada", "Dominica", "San Martín", "San Bartolomé", "San Pedro y Miquelón", "Aruba", "Curazao", "Sint Maarten", "Bonaire", "Saba", "Sint Eustatius"]
     )
 
     dieta = st.sidebar.multiselect(
         "Restricciones alimenticias",
         [
-            "Vegetariano",
-            "Bajo en grasas",
-            "Vegano",
+            "Sin carne",
             "Sin gluten",
-            "Bajo en carbohidratos",
-            "Ninguna"
+            "Sin lácteos",
+            "Sin nueces",
+            "Sin soya",
+            "Sin huevo",
+            "Sin mariscos",
+            "Sin trigo",
+            "Sin pescado",
+            "Sin cerdo",
+            "Sin pollo",
+            "Sin res",
+            "Sin cordero",
+            "Sin pavo",
+            "Sin pato",
         ]
     )
 
