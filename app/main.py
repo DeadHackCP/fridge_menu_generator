@@ -135,19 +135,13 @@ def main():
         if st.button('Generar Recetas 🍳'):
             with st.spinner('Generando con IA...'):
                 # Convertir imagen a formato compatible
-                # prueba = (if uploaded_file is not None: uploaded_file else uploaded_file_camara)
-
-                if uploaded_file is not None:
+                prueba = uploaded_file if uploaded_file is not None else uploaded_file_camara
+                if prueba is not None:
                     imagen = genai.upload_file(
-                        uploaded_file,
-                        mime_type=uploaded_file.type
+                        prueba,
+                        mime_type=prueba.type
                     )
-                if uploaded_file_camara is not None:
-                    imagen = genai.upload_file(
-                        uploaded_file_camara,
-                        mime_type=uploaded_file_camara.type
-                    )
-
+                    
                 preferencias = {
                     "ubicacion": ubicacion,
                     "dieta": dieta
