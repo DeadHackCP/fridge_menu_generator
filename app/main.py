@@ -121,18 +121,32 @@ def main():
     )
 
     enable = st.checkbox("Enable camera")
-    uploaded_file = st.camera_input("Take a picture", disabled=not enable)
+    uploaded_file_camara = st.camera_input("Take a picture", disabled=not enable)
 
-    if uploaded_file is not None:
-        st.image(uploaded_file, caption='Imagen de ingredientes')
+    if uploaded_file is not None or uploaded_file_camara is not None:
+        if uploaded_file is not None:
+            st.image(uploaded_file, caption='Imagen de ingredientes')
+            uploaded_file_camara=None
+
+        if uploaded_file_camara is not None:
+            st.image(uploaded_file_camara, caption='Imagen de ingredientes')
+            uploaded_file=None
 
         if st.button('Generar Recetas 🍳'):
             with st.spinner('Generando con IA...'):
                 # Convertir imagen a formato compatible
-                imagen = genai.upload_file(
-                    uploaded_file,
-                    mime_type=uploaded_file.type
-                )
+                # prueba = (if uploaded_file is not None: uploaded_file else uploaded_file_camara)
+
+                if uploaded_file is not None:
+                    imagen = genai.upload_file(
+                        uploaded_file,
+                        mime_type=uploaded_file.type
+                    )
+                if uploaded_file_camara is not None:
+                    imagen = genai.upload_file(
+                        uploaded_file_camara,
+                        mime_type=uploaded_file_camara.type
+                    )
 
                 preferencias = {
                     "ubicacion": ubicacion,
