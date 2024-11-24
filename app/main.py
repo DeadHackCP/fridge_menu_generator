@@ -108,7 +108,7 @@ def main():
             "Sin cerdo",
             "Sin pollo",
             "Sin res",
-            "Sin cordero",
+            "Sin cordero",  
             "Sin pavo",
             "Sin pato",
         ]
@@ -119,6 +119,9 @@ def main():
         "Sube una foto de tus ingredientes 📸",
         type=['jpg', 'jpeg', 'png']
     )
+
+    enable = st.checkbox("Enable camera")
+    uploaded_file = st.camera_input("Take a picture", disabled=not enable)
 
     if uploaded_file is not None:
         st.image(uploaded_file, caption='Imagen de ingredientes')
