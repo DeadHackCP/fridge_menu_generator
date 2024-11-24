@@ -2,3 +2,4 @@ streamlit
 requests
 Pillow
 python-dotenv
+git+https://github.com/google/generative-ai-python.git
