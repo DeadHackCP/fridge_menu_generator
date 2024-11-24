@@ -31,7 +31,7 @@ def generar_recetas_personalizadas(imagen, preferencias):
                 "nombre_receta": "Nombre de la receta",
                 "ingredientes_necesarios": ["ingrediente1", "ingrediente2"],
                 "ingredientes_disponibles": ["ingrediente1", "ingrediente2"],
-                "instrucciones_paso_a_paso": ["paso1", "paso2"],
+                "instrucciones_paso_a_paso_con_cierto_detalle": ["paso1", "paso2"],
                 "tiempo_preparacion": "XX minutos",
                 "dificultad": "fácil/media/difícil"
             }}
@@ -90,13 +90,14 @@ def main():
     st.sidebar.header("📋 Configuración Personal")
     ubicacion = st.sidebar.selectbox(
         "Tu ubicación",
-        ["México", "Argentina", "España", "Colombia"]
+        ["México", "Argentina", "España", "Colombia", "Peru"]
     )
 
     dieta = st.sidebar.multiselect(
         "Restricciones alimenticias",
         [
             "Vegetariano",
+            "Bajo en grasas",
             "Vegano",
             "Sin gluten",
             "Bajo en carbohidratos",
@@ -114,7 +115,7 @@ def main():
         st.image(uploaded_file, caption='Imagen de ingredientes')
 
         if st.button('Generar Recetas 🍳'):
-            with st.spinner('Analizando imagen...'):
+            with st.spinner('Generando con IA...'):
                 # Convertir imagen a formato compatible
                 imagen = genai.upload_file(
                     uploaded_file,
@@ -146,10 +147,13 @@ def main():
                             with col2:
                                 st.markdown("**Necesarios:**")
                                 for ing in receta['ingredientes_necesarios']:
-                                    st.write(f"🛒 {ing}")
+                                    if ing not in receta['ingredientes_disponibles']:
+                                        st.write(f"🛒 {ing}") 
+                                    else :
+                                        st.write(f"~~🛒{ing}~~")
 
                             st.markdown("### Instrucciones")
-                            for idx, paso in enumerate(receta['instrucciones_paso_a_paso'], 1):
+                            for idx, paso in enumerate(receta['instrucciones_paso_a_paso_con_cierto_detalle'], 1):
                                 st.write(f"{idx}. {paso}")
 
                     st.subheader("🛍️ Lista de Compras")

@@ -22,7 +22,7 @@ Fridge Menu Generator es una aplicación web inteligente que utiliza la API de G
 
 ## 📁 Estructura del Proyecto
 
-```
+``` 
 fridge_menu_generator/
 ├── app/                        # Directorio principal de la aplicación
 │   ├── __init__.py            
